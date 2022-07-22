@@ -18,4 +18,5 @@ func insertMysql(u *User, p *Point) {
 	} else {
 		fmt.Println("Insert successfully Point")
 	}
+
 }
