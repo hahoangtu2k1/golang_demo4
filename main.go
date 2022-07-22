@@ -2,11 +2,8 @@ package main
 
 import (
 	"fmt"
-	_ "github.com/go-sql-driver/mysql"
-	"github.com/go-xorm/xorm"
-	"github.com/go-xorm/core"
-	
-	
+		_ "github.com/go-sql-driver/mysql"
+		"xorm.io/xorm"
 )
 
 var Xorm *xorm.Engine
@@ -29,8 +26,5 @@ type user struct {
 type point struct {
 	user_id string
 	points int64
-	max_points int64
-
+	max_points int
 }
-
-vdff
