@@ -52,5 +52,6 @@ func main() {
 	// }
 	//updateBirth("2", 100) //=>EX 2 update Birth
 
-	insert100User()
+	// insert100User()
+	scanTableUser()
 }

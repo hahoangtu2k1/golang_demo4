@@ -36,49 +36,47 @@ func insert100User() {
 	}
 
 }
-func scanTable() {
-
-	var get User
-	// 	_, err := engine.Table("user").Get(&User{
-	// 		Id:   get.Id,
-	// 		Name: get.Name,
-	// 	})
-	// 	if err != nil {
-	// 		fmt.Print(err)
-	// 	}
-
-	// }
+func scanTable(id string, get User) *User {
 	rows, err := engine.Rows(&get)
 	if err != nil {
 		fmt.Println(err)
 	}
 
 	defer rows.Close()
-	cre := new(User)
+	create := new(User)
 	for rows.Next() {
-		err = rows.Scan(cre)
+		err = rows.Scan(create)
 		if err != nil {
 			fmt.Println(err)
 		}
 	}
-
+	return create
 }
 func scanTableUser() error {
-	countId := make(chan string, 2)
-	countName := make(chan string, 2)
+	countId := make(chan string, 10)
+	countName := make(chan string, 10)
 	getUser := User{}
 	countAll, err := engine.Count(&getUser)
 	if err != nil {
 		return err
 	} else {
-		var g int64
-		for g = 1; g <= countAll; g++ {
+		for i := 1; i <= int(countAll); i++ {
 			wg.Add(1)
-
+			takeId := strconv.Itoa(i)
+			takeAll := scanTable(takeId, User{})
+			countId <- takeAll.Id
+			countName <- takeAll.Name
+			go worker(i, countId, countName)
+			wg.Done()
+			wg.Wait()
 		}
-
+		close(countId)
+		close(countName)
 	}
+
+	return err
+
 }
 func worker(i int, countId <-chan string, countName <-chan string) {
-	fmt.Printf("count :%v - ID: %v - Name: %v\n", i, <-countId, <-countName)
+	fmt.Printf("number :%v - ID: %v - Name: %v\n", i, <-countId, <-countName)
 }
