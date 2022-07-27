@@ -11,6 +11,6 @@ func Connect() *xorm.Engine {
 		panic(err.Error())
 	}
 	// defer engine.Close()
-	engine.ShowSQL()
+	// engine.ShowSQL()
 	return engine
 }

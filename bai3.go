@@ -37,7 +37,7 @@ func insert100User() {
 
 }
 func scanTable(id string, get User) *User {
-	rows, err := engine.Rows(&get)
+	rows, err := engine.Where("id = ?", id).Rows(&get)
 	if err != nil {
 		fmt.Println(err)
 	}

@@ -11,15 +11,21 @@ var wg sync.WaitGroup
 func main() {
 	var engine = Connect()
 	defer engine.Close()
-
+	//exercise 1
 	// engine.Sync2(new(User), new(Point)) //=> create table User and Point
-
+	// var insertU = User{
+	// 	Id:         `4`,
+	// 	Name:       `Aguero`,
+	// 	Birth:      1986,
+	// 	Created:    4,
+	// 	Updated_at: 004,
+	// }
 	// var insertP = Point{
 	// 	User_id:    insertU.Id,
 	// 	Points:     10,
 	// 	Max_points: 10,
 	// }
-	// insertUser()
+	// insertUser(&insertU)
 	// insertPoint(&insertP)
 	// var readU = User{
 	// 	Id:         `4`,
@@ -39,18 +45,19 @@ func main() {
 
 	// var updateU = User{
 	// 	Id:         `3`,
-	// 	Name:       `Dias`,
+	// 	Name:       `D.Silva`,
 	// 	Birth:      26,
 	// 	Created:    20,
-	// 	Updated_at: 23100,
+	// 	Updated_at: 1003,
 	// }
 	// updateUser(&updateU)
-	// var p1 = Point{
-	// 	User_id:    u1.Id,
+	// var updatePoint = Point{ => ERROR
+	// 	User_id:    updateU.Id,
 	// 	Points:     9,
 	// 	Max_points: 10,
 	// }
-	//updateBirth("2", 100) //=>EX 2 update Birth
+	// updatePoint(&updateP)
+	// updateBirth("2", 100) //=>EX 2 update Birth
 
 	// insert100User()
 	scanTableUser()

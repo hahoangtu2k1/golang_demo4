@@ -8,14 +8,8 @@ var engine = Connect()
 
 //insert Mysql
 
-func insertUser() {
-	var insertU = User{
-		Id:         `4`,
-		Name:       `Aguero`,
-		Birth:      30,
-		Created:    26,
-		Updated_at: 231,
-	}
+func insertUser(insertU *User) {
+
 	_, err := engine.Table("user").Insert(&insertU)
 
 	if err != nil {
